@@ -1,0 +1,36 @@
+.Place {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold; 
+    border: 3px solid black;
+    transition: background 0.2s ease-in-out;
+    background-color: white;
+}
+
+.Place:disabled:hover {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.Place:hover {
+    cursor: pointer;
+    background: grey;
+}
+
+.Place.UpperLeft, .Place.Upper, .Place.UpperRight {
+    border-top: none;
+}
+
+.Place.UpperLeft, .Place.MidLeft, .Place.LowerLeft {
+    border-left: none;
+}
+
+.Place.UpperRight, .Place.MidRight, .Place.LowerRight {
+    border-right: none;
+}
+
+.Place.LowerLeft, .Place.Lower, .Place.LowerRight {
+    border-bottom: none;
+}
