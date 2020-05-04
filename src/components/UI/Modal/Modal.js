@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 import classes from './Modal.css'
 import Aux from '../../../hoc/Auxiliar/Auxiliar';
@@ -24,7 +25,12 @@ const Modal = (props) => {
     )
 };
 
+Modal.propTypes = {
+    show: PropTypes.bool,
+    modalClosed: PropTypes.func.isRequired
+}
+
 export default React.memo(Modal, (prevProps, nextProps) => {
-    // if props.show are different, modal update shouldn't be skipped
-    return prevProps.show !== nextProps.show ? false : true
+    // if props.show or children are different, modal update shouldn't be skipped
+    return prevProps.show !== nextProps.show || prevProps.children !== nextProps.children ? false : true
 });
