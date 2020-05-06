@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom'
+import {connect} from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button'
 import classes from './ContactData.css'
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
+import * as actionTypes from '../../../store/actions'
 
 const ContactData = (props) => {
     const [orderForm, setOrderForm] = useState({
@@ -132,8 +134,8 @@ const ContactData = (props) => {
         }
 
         const order = {
-            ingredients: props.ingredients,
-            price: props.totalPrice,
+            ingredients: props.ings,
+            price: props.price,
             orderData: formData
         };
 
@@ -180,4 +182,12 @@ const ContactData = (props) => {
     );
 };
 
-export default withRouter(ContactData);
+
+const mapStateToProps = state => {
+    return {
+        ings: state.ingredients,
+        price: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(ContactData));
