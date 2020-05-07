@@ -26,7 +26,6 @@ const Modal = (props) => {
 };
 
 Modal.propTypes = {
-    show: PropTypes.bool,
     modalClosed: PropTypes.func.isRequired
 }
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom'
 import {connect} from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button'
@@ -9,6 +8,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import * as orderActions from '../../../store/actions'
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+import {updateObject, validate} from '../../../shared/utility'
 
 const ContactData = (props) => {
     const [orderForm, setOrderForm] = useState({
@@ -72,7 +72,8 @@ const ContactData = (props) => {
             },
             value: '',
             validation: {
-                required: true
+                required: true,
+                isEmail: true
             },
             valid: false,
             touched: false
@@ -92,31 +93,19 @@ const ContactData = (props) => {
     });
     const [formIsValid, setFormIsValid] = useState(false);
 
-    const validate = (value, rules) => {
-        let isValid = false;
-
-        if (rules.required) {
-            isValid = value.trim() !== '';
-        }
-
-        return isValid;
-    }
-
     const inputChangedHandler = (event, inputIdentifier) => {
-        const newForm = { ...orderForm }
-
-        const newElement = { ...newForm[inputIdentifier] }
-
-        newElement.value = event.target.value;
-        newElement.valid = validate(newElement.value, newElement.validation);
-        newElement.touched = true;
-
-        newForm[inputIdentifier] = newElement;
+        const newElement = updateObject(orderForm[inputIdentifier], {
+            value: event.target.value,
+            valid: validate(event.target.value, orderForm[inputIdentifier].validation),
+            touched: true
+        })       
+        
+        const newForm = updateObject(orderForm, {[inputIdentifier]: newElement});
 
         let formIsValid = true;
 
-        for (let form in orderForm){
-            formIsValid = orderForm[form].valid && formIsValid
+        for (let form in newForm){
+            formIsValid = newForm[form].valid && formIsValid
         }
 
         setFormIsValid(formIsValid);
@@ -135,10 +124,11 @@ const ContactData = (props) => {
         const order = {
             ingredients: props.ings,
             price: props.price,
-            orderData: formData
+            orderData: formData,
+            userId: props.userId
         };
 
-       props.onPurchaseBurger(order)
+       props.onPurchaseBurger(order, props.token)
     };
 
     let inputs = [];
@@ -161,7 +151,7 @@ const ContactData = (props) => {
 
     let form = (<form onSubmit={orderHandler}>
         {inputs}
-        <Button btnType='Success' disabled={!formIsValid} clicked={orderHandler}>Order</Button>
+        <Button btnType='Success' disabled={!formIsValid}>Order</Button>
     </form>);
 
     if (props.loading) form = <Spinner></Spinner>
@@ -176,7 +166,7 @@ const ContactData = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onPurchaseBurger: (orderData) => dispatch(orderActions.purchaseBurger(orderData))
+        onPurchaseBurger: (orderData, token) => dispatch(orderActions.purchaseBurger(orderData, token))
     }
 }
 
@@ -184,7 +174,9 @@ const mapStateToProps = state => {
     return {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
-        loading: state.order.loading
+        loading: state.order.loading,
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 
