@@ -1,0 +1,5 @@
+add lazy loading
+add testing
+add firebase key to env
+
+add initial apps screen
