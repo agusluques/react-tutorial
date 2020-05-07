@@ -7,7 +7,8 @@ import classes from './ContactData.css'
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
-import * as actionTypes from '../../../store/actions'
+import * as orderActions from '../../../store/actions'
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
 
 const ContactData = (props) => {
     const [orderForm, setOrderForm] = useState({
@@ -89,7 +90,6 @@ const ContactData = (props) => {
             valid: true
         },
     });
-    const [loading, setLoading] = useState(false);
     const [formIsValid, setFormIsValid] = useState(false);
 
     const validate = (value, rules) => {
@@ -125,7 +125,6 @@ const ContactData = (props) => {
 
     const orderHandler = (event) => {
         event.preventDefault();
-        setLoading({ loading: true });
 
         const formData = {};
 
@@ -139,14 +138,7 @@ const ContactData = (props) => {
             orderData: formData
         };
 
-        axios.post('/orders.json', order)
-            .then(response => {
-                setLoading(false);
-                props.history.push('/');
-            })
-            .catch(error => {
-                console.log(error)
-            });
+       props.onPurchaseBurger(order)
     };
 
     let inputs = [];
@@ -172,7 +164,7 @@ const ContactData = (props) => {
         <Button btnType='Success' disabled={!formIsValid} clicked={orderHandler}>Order</Button>
     </form>);
 
-    if (loading) form = <Spinner></Spinner>
+    if (props.loading) form = <Spinner></Spinner>
 
     return (
         <div className={classes.ContactData}>
@@ -182,12 +174,18 @@ const ContactData = (props) => {
     );
 };
 
-
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
     return {
-        ings: state.ingredients,
-        price: state.totalPrice
+        onPurchaseBurger: (orderData) => dispatch(orderActions.purchaseBurger(orderData))
     }
 }
 
-export default connect(mapStateToProps)(withRouter(ContactData));
+const mapStateToProps = state => {
+    return {
+        ings: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.totalPrice,
+        loading: state.order.loading
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
