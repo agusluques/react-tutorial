@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, Component } from 'react';
+import React, { Component } from 'react';
 
 import Modal from '../../components/UI/Modal/Modal'
 import Aux from '../Auxiliar/Auxiliar'
