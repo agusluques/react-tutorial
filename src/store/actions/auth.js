@@ -78,7 +78,7 @@ export const authCheckState = () => {
             if (expirationDate <= new Date()) dispatch(authLogout())
             else {
                 const localId = localStorage.getItem('localId')
-                dispatch(authSuccess({tokenId: token, localId: localId}))
+                dispatch(authSuccess({idToken: token, localId: localId}))
                 dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000))
             }
             
