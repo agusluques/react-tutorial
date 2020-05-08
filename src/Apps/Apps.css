@@ -1,0 +1,27 @@
+.Apps {
+    text-align: center;
+}
+
+.AppsBox {
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.AppCard {
+    max-width: 300px;
+    border: 2px solid #5C068C;
+    border-radius: 10%;
+    box-shadow: inset -5px 0 #5C068C;
+    color: black;
+    background: linear-gradient(#f85dd9, #C800A1);
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 10px;
+    flex-grow: 4;
+}

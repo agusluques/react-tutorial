@@ -1,5 +1,7 @@
 import React from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
+import classes from './Apps.css'
 
 const Apps = (props) => {
 
@@ -9,14 +11,18 @@ const Apps = (props) => {
     }
 
     return (
-        <div>
-            {props.apps.map((app, index) => {
-                return (
-                    <button key={index} onClick={() => {redirect(app.route)}}>
-                        {app.name}
-                    </button>
-                )
-            })}
+        <div className={classes.Apps}>
+            <h1>React Apps</h1>
+            <div className={classes.AppsBox}>
+                {props.apps.map((app, index) => {
+                    return (
+                        <div className={classes.AppCard} key={index} onClick={() => { redirect(app.route) }}>
+                            <h1>{app.name}</h1>
+                            <p>{app.description}</p>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 };
