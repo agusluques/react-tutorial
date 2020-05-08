@@ -8,8 +8,8 @@ import BurgerBuilderApp from './Apps/BurgerBuilderApp/BurgerBuilderApp'
 const App = (props) => {
   
   const apps = [
-    {name: 'Tic-Tac-Toe', route: '/tictactoe'},
-    {name: 'Burger Builder', route: '/burgerbuilder'}
+    {name: 'Burger Builder', route: '/burgerbuilder', description: 'This is a burger app. You can login/signup, build a burger, see your orders and checkout'},
+    {name: 'Tic-Tac-Toe', route: '/tictactoe', description: 'This is a simple TicTacToe game'},
   ]
 
 

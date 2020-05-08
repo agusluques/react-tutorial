@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+
 import Field from '../../components/TicTacToe/Field/Field';
-import Aux from '../../hoc/Auxiliar/Auxiliar';
 import Dashboard from '../../components/TicTacToe/Dashboard/Dashboard';
+import classes from './TicTacToe.css'
 
 class TicTacToe extends Component {
     state = {
@@ -54,10 +55,10 @@ class TicTacToe extends Component {
 
     render() {
         return(
-            <Aux>
+            <div className={classes.TicTacToe}>
                 <Dashboard actualPlayer={this.state.actualPlayer} reset={this.resetStateHandler}>Tic-Tac-Toe</Dashboard>
                 <Field places={this.state.places} playerClicks={this.playerClicksHandler}></Field>
-            </Aux>
+            </div>
         )
     }
 };
