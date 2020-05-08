@@ -1,62 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import Layout from './hoc/Layout/Layout'
-import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
-import TicTacToe from './containers/TicTacToe/TicTacToe';
-import Checkout from './containers/Checkout/Checkout'
-import Orders from './containers/Orders/Orders'
-import Auth from './containers/Auth/Auth'
-import Logout from './containers/Auth/Logout/Logout'
-import * as actions from './store/actions'
+import Apps from './Apps/Apps'
+import TicTacToeApp from './Apps/TicTacToeApp/TicTacToeApp'
+import BurgerBuilderApp from './Apps/BurgerBuilderApp/BurgerBuilderApp'
 
-class App extends Component {
+const App = (props) => {
+  
+  const apps = [
+    {name: 'Tic-Tac-Toe', route: '/tictactoe'},
+    {name: 'Burger Builder', route: '/burgerbuilder'}
+  ]
 
-  componentDidMount() {
-    this.props.onTryAutoSignup()
-  }
 
-  render() {
-    let routes = (
-      <Switch>
-        <Route path="/auth" component={Auth}></Route>
-        <Route path="/" exact component={BurgerBuilder}></Route>
-        <Redirect to="/"></Redirect>
-      </Switch>
-    );
-
-    if (this.props.isAuthenticated) {
-      routes = (
-        <Switch>
-          <Route path="/orders" component={Orders}></Route>
-          <Route path="/checkout" component={Checkout}></Route>
-          <Route path="/auth" component={Auth}></Route>
-          <Route path="/logout" component={Logout}></Route>
-          <Route path="/" exact component={BurgerBuilder}></Route>
-          <Redirect to="/"></Redirect>
-        </Switch>
-      )
-    }
-    return (
-      <Layout>
-        {routes}
-        <Route path="/tictactoe" component={TicTacToe}></Route>
-      </Layout>
-    );
-  };
+  return (
+    <Switch>
+      <Route path="/tictactoe" component={TicTacToeApp}></Route>
+      <Route path="/burgerbuilder" component={BurgerBuilderApp}></Route>
+      <Route path="/" exact render={()=> <Apps apps={apps}></Apps>}></Route>
+      <Redirect to="/"></Redirect>
+    </Switch>
+  );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.auth.token !== null
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(App);

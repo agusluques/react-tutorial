@@ -44,11 +44,13 @@ const Auth = (props) => {
     const [formIsValid, setFormIsValid] = useState(false);
     const [signUp, setSignUp] = useState(false);
 
+    const {buildingBurger, authRedirectPath, onSetAuthRedirectPath} = props;
+
     useEffect(() => {
-        if (!props.buildingBurger && props.authRedirectPath !== '/'){
-            props.onSetAuthRedirectPath('/')
+        if (!buildingBurger && authRedirectPath !== '/burgerbuilder'){
+            onSetAuthRedirectPath('/burgerbuilder')
         }
-    }, [])
+    }, [buildingBurger, authRedirectPath, onSetAuthRedirectPath])
 
     const inputChangedHandler = (event, inputIdentifier) => {
         const newElement = updateObject(loginForm[inputIdentifier], {

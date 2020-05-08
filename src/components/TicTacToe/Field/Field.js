@@ -1,7 +1,7 @@
 import React from 'react';
 
 import classes from './Field.css'
-import Place from '../Place'
+import Place from './Place/Place'
 
 const field = (props) => {
     const returnedPlaces = props.places.map(place => {

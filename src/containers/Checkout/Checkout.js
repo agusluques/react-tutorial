@@ -11,12 +11,12 @@ const Checkout = (props) => {
     }
 
     const acceptedCheckoutHandler = () => {
-        props.history.replace('/checkout/contact-data')
+        props.history.replace('/burgerbuilder/checkout/contact-data')
     }
     
-    let summary = <Redirect to="/"></Redirect>
+    let summary = <Redirect to="/burgerbuilder"></Redirect>
     if (props.ings) {
-        const purchasedRedirect = props.purchased ? <Redirect to="/"></Redirect> : null
+        const purchasedRedirect = props.purchased ? <Redirect to="/burgerbuilder"></Redirect> : null
         summary = (
             <div>
                 {purchasedRedirect}
@@ -26,7 +26,7 @@ const Checkout = (props) => {
                     ingredients={props.ings}
                 ></CheckoutSummary>
                 <Route
-                    path={props.match.path + '/contact-data'}
+                    path='/burgerbuilder/checkout/contact-data'
                     component={ContactData}>
                 </Route>
             </div>

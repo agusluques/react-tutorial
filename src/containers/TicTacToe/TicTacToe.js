@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Field from '../../components/TicTacToe/Place/Field/Field';
+import Field from '../../components/TicTacToe/Field/Field';
 import Aux from '../../hoc/Auxiliar/Auxiliar';
 import Dashboard from '../../components/TicTacToe/Dashboard/Dashboard';
 
