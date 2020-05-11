@@ -1,5 +1,5 @@
 import React from 'react';
-import TicTacToe from '../../containers/TicTacToe/TicTacToe'
+import TicTacToe from '../../containers/TicTacToeContainers/TicTacToe/TicTacToe'
 
 const TicTacToeApp = (props) => (
     <TicTacToe></TicTacToe>

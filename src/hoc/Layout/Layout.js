@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import Aux from '../Auxiliar/Auxiliar';
 import classes from './Layout.css';
-import Toolbar from '../../components/Navigation/Toolbar/Toolbar'
-import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer'
+import Toolbar from '../../components/BurgerBuilderComponents/Navigation/Toolbar/Toolbar'
+import SideDrawer from '../../components/BurgerBuilderComponents/Navigation/SideDrawer/SideDrawer'
 
 const Layout = (props) => {
     const [showSideDrawer, setShowSideDrawer] = useState(false)
