@@ -41,11 +41,9 @@ Once the image is built, you can run:
 
 This will run your created image `<image_name>:<image_tag>` inside a container. 
 
-`-it`: runs container in **interactive mode**
-
-`--rm`: removes container after it stops
-
-`-p 8080:3000`: links your project port *3000* to *8080*
+> `-it`: runs container in **interactive mode** <br>
+ `--rm`: removes container after it stops <br>
+ `-p 8080:3000`: links your project port *3000* to *8080* <br>
 
 <br>
 
@@ -62,7 +60,6 @@ In the project directory, you can run:
 
 This will run the project in the development mode by executing the command `node scripts/start.js` which will run all command in [start.js](./scripts/start.js).
 
-<br>
 
 :information_source: *Note*: The page will reload if you make edits and you will also see any lint errors in the console.
 
