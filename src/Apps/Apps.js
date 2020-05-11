@@ -6,7 +6,6 @@ import classes from './Apps.css'
 const Apps = (props) => {
 
     const redirect = route => {
-        console.log(props, route)
         props.history.push(route)
     }
 

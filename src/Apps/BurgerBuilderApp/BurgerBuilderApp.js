@@ -4,20 +4,20 @@ import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions'
 import Layout from '../../hoc/Layout/Layout'
-import BurgerBuilder from '../../containers/BurgerBuilder/BurgerBuilder';
-import Logout from '../../containers/Auth/Logout/Logout'
+import BurgerBuilder from '../../containers/BurgerBuilderContainers/BurgerBuilder/BurgerBuilder';
+import Logout from '../../containers/BurgerBuilderContainers/Auth/Logout/Logout'
 
 
 const Checkout = React.lazy(() => {
-    return import('../../containers/Checkout/Checkout');
+    return import('../../containers/BurgerBuilderContainers/Checkout/Checkout');
 })
 
 const Orders = React.lazy(() => {
-    return import('../../containers/Orders/Orders');
+    return import('../../containers/BurgerBuilderContainers/Orders/Orders');
 })
 
 const Auth = React.lazy(() => {
-    return import('../../containers/Auth/Auth');
+    return import('../../containers/BurgerBuilderContainers/Auth/Auth');
 })
 
 const BurgerBuilderApp = (props) => {
