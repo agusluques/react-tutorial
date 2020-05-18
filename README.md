@@ -6,6 +6,7 @@ Documentation in [reactjs.org](https://reactjs.org/)
     + [With Docker](#with-docker)
     + [With Node](#with-node)
 * [Apps](#apps)
+* [POCs](#pocs)
   
   
 ## Pre-requisites
@@ -69,3 +70,15 @@ This will run the project in the development mode by executing the command `node
 
  - [Burger Builder](./src/Apps/BurgerBuilderApp/README.md)
  - [TicTacToe](./src/Apps/TicTacToeApp/README.md)
+
+## POCs
+- [POC de **sintaxis básica**](./POCs/base-project)
+- [POC de **listas y condicionales**](./POCs/list-conditionals)
+- [POC de **styling**](./POCs/styling)
+- [POC de **lifecycles hooks**](./POCs/lifecycles)
+- [POC de **http**](./POCs/http)
+- [POC de **routing**](./POCs/routing)
+- [POC de **forms**](./POCs/forms)
+- [POC de **redux**](./POCs/redux)
+- [POC de **authentication**](./POCs/authentication)
+- [POC de **React Hooks**](./POCs/hooks)
